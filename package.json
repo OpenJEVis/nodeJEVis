@@ -1,9 +1,13 @@
 {
   "name": "@envidatec/node-red-contrib-jevis",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Read / Write to JEvis Server",
   "main": "index.js",
   "keywords": [ "node-red" ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OpenJEVis/nodeJEVis.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
