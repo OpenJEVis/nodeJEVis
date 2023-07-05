@@ -1,0 +1,64 @@
+<!-- Authentication node-->
+<script type="text/javascript">
+    RED.nodes.registerType('JEVis-Read', {
+        category: 'JEVis',
+        color: '#a6bbcf',
+        defaults: {
+            jevisid:{value:""},
+            name: {value: ""},
+            aggregation:{value:"NONE"},
+            configuration: {value: "", type: "JEVis-Server", required: true}
+        },
+        oneditprepare: function (){
+            $("#node-input-aggregation").typedInput({
+                types: [
+                    {
+                        value: "NONE",
+                        options: [
+                            { value: "NONE", label: "NONE"},
+                            { value: "MINUTELY", label: "MINUTELY"},
+                            { value: "QUARTER_HOURLY", label: "QUARTER_HOURLY"},
+                            { value: "HOURLY", label: "HOURLY"},
+                            { value: "DAILY", label: "DAILY"},
+                            { value: "WEEKLY", label: "WEEKLY"},
+                            { value: "MONTHLY", label: "MONTHLY"},
+                            { value: "QUARTERLY", label: "QUARTERLY"},
+                            { value: "YEARLY", label: "YEARLY"},
+                        ]
+                    }
+                ]
+            })
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-area-chart",
+        label: function () {
+            return this.name || "JEVis-Read";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="JEVis-Read">
+<div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+</div>
+<div class="form-row">
+    <label for="node-input-jevisid">Name</label>
+    <input type="text" id="node-input-jevisid" placeholder="ID">
+</div>
+<div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Aggregation</label>
+    <input type="text" id="node-input-aggregation">
+</div>
+<div class="form-row">
+    <label for="node-input-configuration">Configuration</label>
+    <input type="text" id="node-input-configuration">
+</div>
+
+</script>
+
+<script type="text/x-red" data-help-name="authentication">
+<p>Help text.</p>
+
+</script>

@@ -1,0 +1,39 @@
+<!-- Authentication node-->
+<script type="text/javascript">
+    RED.nodes.registerType('JEVis-Write', {
+        category: 'JEVis',
+        color: '#a6bbcf',
+        defaults: {
+            jevisid:{value:""},
+            name: {value: ""},
+            configuration: {value: "", type: "JEVis-Server", required: true}
+        },
+        inputs: 1,
+        outputs: 0,
+        icon: "font-awesome/fa-area-chart",
+        label: function () {
+            return this.name || "JEVis-Write";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="JEVis-Write">
+<div class="form-row">
+    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+</div>
+<div class="form-row">
+    <label for="node-input-jevisid">Name</label>
+    <input type="text" id="node-input-jevisid" placeholder="ID">
+</div>
+<div class="form-row">
+    <label for="node-input-configuration">Configuration</label>
+    <input type="text" id="node-input-configuration">
+</div>
+
+</script>
+
+<script type="text/x-red" data-help-name="authentication">
+<p>Help text.</p>
+
+</script>
