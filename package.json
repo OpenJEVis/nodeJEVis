@@ -1,6 +1,6 @@
 {
   "name": "@envidatec/node-red-contrib-jevis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Read / Write to JEvis Server",
   "main": "index.js",
   "keywords": [ "node-red" ],
