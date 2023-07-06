@@ -7,7 +7,7 @@
 |----------|----------------------------------------|
 | username | username of JEVis User for this Server | 
 | password | password of the corresponding User     | 
-| host     | the address to the JEVis Server        |  
+| host     | the address to the JEVis Server        |
 
 ### JEVis Read
 
@@ -15,9 +15,10 @@
 #### Properties
 
 
-| name     | meaning                            | 
-|----------|------------------------------------|
-| JEVis ID | ID Of the JEVis Object             |
+| name        | meaning                                 | 
+|-------------|-----------------------------------------|
+| JEVis ID    | ID of the JEVis Object                  |
+| Aggregation | Aggregation used for the requested Data |
 
 #### Request Last Sample
 
@@ -50,7 +51,7 @@ expects in msg.payload an array of elements each of them containing:
 | property | meaning                                                                                 | 
 |----------|-----------------------------------------------------------------------------------------|
 | ts       | Date time String Written into the JEVis Object in the format (yyyy-MM-ddTHH:mm:ss.SSSZ) |
-| ts       | The Value for the corresponding Date Time                                               |
+| value    | The Value for the corresponding Date Time                                               |
 
 
 

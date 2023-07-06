@@ -1,8 +1,7 @@
 {
   "name": "@envidatec/node-red-contrib-jevis",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Read / Write to JEVis Server",
-  "main": "index.js",
   "keywords": [ "node-red" ],
   "repository": {
     "type": "git",
@@ -13,7 +12,11 @@
   },
   "author": "Daniel Klinker",
   "license": "GPL-3.0",
+  "engines": {
+    "node": ">=15"
+  },
   "node-red": {
+    "version": ">=2.0",
     "nodes": {
       "read": "JEVis-Read.js",
       "write": "JEVis-Write.js",

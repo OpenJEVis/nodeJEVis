@@ -1,0 +1,243 @@
+[
+  {
+    "id": "68e43cfcbddee35f",
+    "type": "tab",
+    "label": "Example JEVis",
+    "disabled": false,
+    "info": "",
+    "env": []
+  },
+  {
+    "id": "65ac3a0e9a47c398",
+    "type": "JEVis-Read",
+    "z": "68e43cfcbddee35f",
+    "jevisid": "9055",
+    "name": "",
+    "aggregation": "HOURLY",
+    "configuration": "70bf8619a9211a9a",
+    "x": 610,
+    "y": 120,
+    "wires": [
+      [
+        "933ac3229fdb7d41"
+      ]
+    ]
+  },
+  {
+    "id": "03a3bfdac5fe91cc",
+    "type": "inject",
+    "z": "68e43cfcbddee35f",
+    "name": "",
+    "props": [
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "x": 270,
+    "y": 120,
+    "wires": [
+      [
+        "65ac3a0e9a47c398"
+      ]
+    ]
+  },
+  {
+    "id": "933ac3229fdb7d41",
+    "type": "debug",
+    "z": "68e43cfcbddee35f",
+    "name": "last Data",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 980,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "ad1fbedbe49081d5",
+    "type": "comment",
+    "z": "68e43cfcbddee35f",
+    "name": "read last availble data",
+    "info": "",
+    "x": 660,
+    "y": 40,
+    "wires": []
+  },
+  {
+    "id": "a664b58d6a49d00d",
+    "type": "inject",
+    "z": "68e43cfcbddee35f",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "300",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "{}",
+    "payloadType": "json",
+    "x": 250,
+    "y": 300,
+    "wires": [
+      [
+        "84d8f7c72c94737b"
+      ]
+    ]
+  },
+  {
+    "id": "84d8f7c72c94737b",
+    "type": "function",
+    "z": "68e43cfcbddee35f",
+    "name": "set from",
+    "func": "d = new Date();\nd.setDate(d.getDate()-3);\nmsg.payload.from = d;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 460,
+    "y": 300,
+    "wires": [
+      [
+        "fa8cdb4275469598"
+      ]
+    ]
+  },
+  {
+    "id": "fa8cdb4275469598",
+    "type": "function",
+    "z": "68e43cfcbddee35f",
+    "name": "set until",
+    "func": "d = new Date();\nd.setDate(d.getDate())\nmsg.payload.until = d;\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 620,
+    "y": 300,
+    "wires": [
+      [
+        "f5488245bd07e6be"
+      ]
+    ]
+  },
+  {
+    "id": "f5488245bd07e6be",
+    "type": "JEVis-Read",
+    "z": "68e43cfcbddee35f",
+    "jevisid": "9055",
+    "name": "",
+    "aggregation": "HOURLY",
+    "configuration": "70bf8619a9211a9a",
+    "x": 830,
+    "y": 300,
+    "wires": [
+      [
+        "e0d5c9192e0902a4"
+      ]
+    ]
+  },
+  {
+    "id": "e0d5c9192e0902a4",
+    "type": "debug",
+    "z": "68e43cfcbddee35f",
+    "name": "Data last 3 days",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1020,
+    "y": 300,
+    "wires": []
+  },
+  {
+    "id": "d81667dc61fa84dd",
+    "type": "comment",
+    "z": "68e43cfcbddee35f",
+    "name": "read data last 3 days",
+    "info": "",
+    "x": 660,
+    "y": 220,
+    "wires": []
+  },
+  {
+    "id": "08aed8c56d247853",
+    "type": "inject",
+    "z": "68e43cfcbddee35f",
+    "name": "",
+    "props": [
+      {
+        "p": "payload"
+      },
+      {
+        "p": "topic",
+        "vt": "str"
+      }
+    ],
+    "repeat": "",
+    "crontab": "",
+    "once": false,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "[{\"ts\":\"2022-07-06T00:00:00.000Z\",\"value\":12.3},{\"ts\":\"2022-07-06T01:00:00.000Z\",\"value\":12.7},{\"ts\":\"2022-07-06T02:00:00.000Z\",\"value\":15.7}]",
+    "payloadType": "json",
+    "x": 250,
+    "y": 440,
+    "wires": [
+      [
+        "31a4a8fd35a3add6"
+      ]
+    ]
+  },
+  {
+    "id": "31a4a8fd35a3add6",
+    "type": "JEVis-Write",
+    "z": "68e43cfcbddee35f",
+    "jevisid": "11008",
+    "name": "",
+    "configuration": "70bf8619a9211a9a",
+    "x": 430,
+    "y": 440,
+    "wires": []
+  },
+  {
+    "id": "3fd6839e6063301f",
+    "type": "comment",
+    "z": "68e43cfcbddee35f",
+    "name": "write data",
+    "info": "",
+    "x": 600,
+    "y": 380,
+    "wires": []
+  },
+  {
+    "id": "70bf8619a9211a9a",
+    "type": "JEVis-Server",
+    "name": "Demo",
+    "host": "https://demo.jevis.de:8000"
+  }
+]

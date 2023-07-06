@@ -52,9 +52,12 @@ module.exports = function (RED) {
                 }).then(function (response) {
                     console.log(response)
                     msg.payload = response.data;
-                    node.status({fill: "green", shape: "dot", text: "last Time Read :" + Date.now().toString()});
+                    node.status({fill: "green", shape: "dot", text: "Successfully Read"});
                     node.send(msg);
 
+                }).catch(reason => {
+                    node.status({fill: "red", shape: "dot", text: reason});
+                    done();
                 });
             } catch (e){
                 node.status({fill: "red", shape: "dot", text: e});
