@@ -1,14 +1,10 @@
 const axios = require("axios");
 module.exports = function(RED) {
     const axios = require('axios');
-    /*
-    Authentication node functions
-    */
     function JEVisWrite(config) {
         RED.nodes.createNode(this,config);
         var node = this;
         node.jevisid = config.jevisid;
-        // Retrieve the configuration node
         node.configuration = RED.nodes.getNode(config.configuration);
         this.on('input', function (msg, send, done) {
             try{
@@ -23,8 +19,12 @@ module.exports = function(RED) {
                     },
                     data:msg.payload
                 }).then(function (response){
-                    node.status({fill:"green", shape: "dot", text: "last Time Written :"+Date.now()})
+                    date = Date()
+                    node.status({fill:"green", shape: "dot", text: "Successfully Written"})
                     console.log(response);
+                    done();
+                }).catch(reason => {
+                    node.status({fill: "red", shape: "dot", text: reason});
                     done();
                 });
             }catch (e){
