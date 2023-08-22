@@ -6,9 +6,14 @@ module.exports = function(RED) {
         var node = this;
         node.jevisid = config.jevisid;
         node.configuration = RED.nodes.getNode(config.configuration);
+        node.attribute = config.attribute;
         this.on('input', function (msg, send, done) {
             try{
-                let url =  node.configuration.host+"/JEWebService/v1/objects/"+node.jevisid+"/attributes/Value/samples";
+                let url =  node.configuration.host+
+                    "/JEWebService/v1/objects/"+
+                    node.jevisid+"/attributes/"+
+                    node.attribute+
+                    +"/samples";
                 console.log("Write data  into JEVis ID:" + node.jevisid);
                 axios({
                     method: 'post',
@@ -31,8 +36,6 @@ module.exports = function(RED) {
                 node.status({fill: "red", shape: "dot", text: e});
                 done();
             }
-
-
 
         });
     }
