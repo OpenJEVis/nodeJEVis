@@ -9,6 +9,7 @@ module.exports = function (RED) {
         RED.nodes.createNode(this, config);
         let node = this;
         node.jevisid = config.jevisid;
+        node.attribute = config.attribute;
         node.aggregation = config.aggregation;
         node.configuration = RED.nodes.getNode(config.configuration);
         this.on('input', function (msg, send, done) {
@@ -18,11 +19,15 @@ module.exports = function (RED) {
                 let from;
                 let until;
 
-                let url = node.configuration.host + "/JEWebService/v1/objects/" + node.jevisid + "/attributes/Value/samples";
+                let url = node.configuration.host +
+                    "/JEWebService/v1/objects/" +
+                    node.jevisid + "/attributes/"+
+                    node.attribute+
+                    "/samples";
                 let onlyLast = false;
                 console.log("Request data from JEVis ID:" + node.jevisid);
-                if (msg.payload != null) {
-                    if (msg.payload.from == null && msg.payload.until == null) {
+                if (msg.payload != undefined) {
+                    if (msg.payload.from == undefined && msg.payload.until == undefined) {
 
                         onlyLast = true;
                     } else {
@@ -51,13 +56,12 @@ module.exports = function (RED) {
                     }
                 }).then(function (response) {
                     console.log(response)
-                    msg.payload = response.data;
                     node.status({fill: "green", shape: "dot", text: "Successfully Read"});
-                    node.send(msg);
+                    node.send({payload:response.data,topic:node.jevisid});
 
                 }).catch(reason => {
                     node.status({fill: "red", shape: "dot", text: reason});
-                    done();
+                    done(reason);
                 });
             } catch (e){
                 node.status({fill: "red", shape: "dot", text: e});
@@ -73,7 +77,7 @@ module.exports = function (RED) {
 }
 
 function dateToString(dateString) {
-    if (dateString != null) {
+    if (dateString != undefined) {
         let date = new Date(dateString);
         let str = new String(date.toISOString());
         str = str.replaceAll("-", "");

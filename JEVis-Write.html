@@ -6,6 +6,7 @@
         defaults: {
             jevisid:{value:""},
             name: {value: ""},
+            attribute:{value:"Value"},
             configuration: {value: "", type: "JEVis-Server", required: true}
         },
         inputs: 1,
@@ -27,13 +28,39 @@
     <input type="text" id="node-input-jevisid" placeholder="ID">
 </div>
 <div class="form-row">
+    <label for="node-input-attribute">Name</label>
+    <input type="text" id="node-input-attribute" placeholder="Attribute">
+</div>
+<div class="form-row">
     <label for="node-input-configuration">Configuration</label>
     <input type="text" id="node-input-configuration">
 </div>
 
 </script>
 
-<script type="text/x-red" data-help-name="authentication">
-<p>Help text.</p>
+<script type="text/x-red" data-help-name="JEVis-Write">
+<h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>payload
+            <span class="property-type">object</span>
+        </dt>
+        <dd> An Array contain Objects with the attributes:
+        <table>
+            <tr>
+            <th>attribute</th>
+            <th>meaning</th>
+            </tr>
+            <tr>
+            <td>value</td>
+            <td>Payload of the Sample</td>
+            </tr>
+            <tr>
+            <td>ts</td>
+            <td>Timestamp of the value (yyyy-MM-ddTHH:mm:ss.SSSZ)</td>
+            </tr>
+
+          </table>
+         </dd>
+    </dl>
 
 </script>

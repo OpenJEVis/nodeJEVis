@@ -1,6 +1,6 @@
 {
   "name": "@envidatec/node-red-contrib-jevis",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Read / Write to JEVis Server",
   "keywords": [ "node-red" ],
   "repository": {

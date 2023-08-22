@@ -13,13 +13,14 @@
     "z": "68e43cfcbddee35f",
     "jevisid": "9055",
     "name": "",
+    "attribute": "Value",
     "aggregation": "HOURLY",
     "configuration": "70bf8619a9211a9a",
     "x": 610,
     "y": 120,
     "wires": [
       [
-        "933ac3229fdb7d41"
+        "ac00dcc12350315c"
       ]
     ]
   },
@@ -46,23 +47,6 @@
         "65ac3a0e9a47c398"
       ]
     ]
-  },
-  {
-    "id": "933ac3229fdb7d41",
-    "type": "debug",
-    "z": "68e43cfcbddee35f",
-    "name": "last Data",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 980,
-    "y": 120,
-    "wires": []
   },
   {
     "id": "ad1fbedbe49081d5",
@@ -147,32 +131,16 @@
     "z": "68e43cfcbddee35f",
     "jevisid": "9055",
     "name": "",
+    "attribute": "Value",
     "aggregation": "HOURLY",
     "configuration": "70bf8619a9211a9a",
     "x": 830,
     "y": 300,
     "wires": [
       [
-        "e0d5c9192e0902a4"
+        "02e1cb54c9df6ab5"
       ]
     ]
-  },
-  {
-    "id": "e0d5c9192e0902a4",
-    "type": "debug",
-    "z": "68e43cfcbddee35f",
-    "name": "Data last 3 days",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "payload",
-    "targetType": "msg",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1020,
-    "y": 300,
-    "wires": []
   },
   {
     "id": "d81667dc61fa84dd",
@@ -219,6 +187,7 @@
     "z": "68e43cfcbddee35f",
     "jevisid": "11008",
     "name": "",
+    "attribute": "Value",
     "configuration": "70bf8619a9211a9a",
     "x": 430,
     "y": 440,
@@ -232,6 +201,38 @@
     "info": "",
     "x": 600,
     "y": 380,
+    "wires": []
+  },
+  {
+    "id": "ac00dcc12350315c",
+    "type": "debug",
+    "z": "68e43cfcbddee35f",
+    "name": "debug 71",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 920,
+    "y": 120,
+    "wires": []
+  },
+  {
+    "id": "02e1cb54c9df6ab5",
+    "type": "debug",
+    "z": "68e43cfcbddee35f",
+    "name": "debug 72",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "false",
+    "statusVal": "",
+    "statusType": "auto",
+    "x": 1000,
+    "y": 320,
     "wires": []
   },
   {
