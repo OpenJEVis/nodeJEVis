@@ -1,4 +1,5 @@
-### JEVis Server
+JEVis Server
+============
 
 #### Properties
 
@@ -15,10 +16,11 @@
 #### Properties
 
 
-| name        | meaning                                 | 
-|-------------|-----------------------------------------|
-| JEVis ID    | ID of the JEVis Object                  |
-| Aggregation | Aggregation used for the requested Data |
+| name          | meaning                                 | 
+|---------------|-----------------------------------------|
+| JEVis ID      | ID of the JEVis Object                  |
+| Aggregation   | Aggregation used for the requested Data |
+| Attribute     | JEVis Attribute default Value           | 
 
 #### Request Last Sample
 
@@ -39,9 +41,10 @@ Requests all Data between two Dates and returns it
 ### JEVis Write
 
 
-| name     | meaning                            | 
-|----------|------------------------------------|
-| JEVis ID | ID Of the JEVis Object             |
+| name       | meaning                           | 
+|------------|-----------------------------------|
+| JEVis ID   | ID Of the JEVis Object            |
+| Attribute  | JEVis Attribute default Value     | 
 
 #### Payload
 
