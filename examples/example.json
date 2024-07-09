@@ -1,244 +1,438 @@
 [
   {
-    "id": "68e43cfcbddee35f",
-    "type": "tab",
-    "label": "Example JEVis",
-    "disabled": false,
-    "info": "",
-    "env": []
+      "id": "68e43cfcbddee35f",
+      "type": "tab",
+      "label": "Example JEVis new",
+      "disabled": false,
+      "info": "",
+      "env": []
   },
   {
-    "id": "65ac3a0e9a47c398",
-    "type": "JEVis-Read",
-    "z": "68e43cfcbddee35f",
-    "jevisid": "9055",
-    "name": "",
-    "attribute": "Value",
-    "aggregation": "HOURLY",
-    "configuration": "70bf8619a9211a9a",
-    "x": 610,
-    "y": 120,
-    "wires": [
-      [
-        "ac00dcc12350315c"
+      "id": "65ac3a0e9a47c398",
+      "type": "JEVis-Read",
+      "z": "68e43cfcbddee35f",
+      "jevisid": "9055",
+      "name": "",
+      "attribute": "Value",
+      "aggregation": "HOURLY",
+      "configuration": "70bf8619a9211a9a",
+      "x": 610,
+      "y": 120,
+      "wires": [
+          [
+              "ac00dcc12350315c"
+          ]
       ]
-    ]
   },
   {
-    "id": "03a3bfdac5fe91cc",
-    "type": "inject",
-    "z": "68e43cfcbddee35f",
-    "name": "",
-    "props": [
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "x": 270,
-    "y": 120,
-    "wires": [
-      [
-        "65ac3a0e9a47c398"
+      "id": "03a3bfdac5fe91cc",
+      "type": "inject",
+      "z": "68e43cfcbddee35f",
+      "name": "",
+      "props": [
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "x": 270,
+      "y": 120,
+      "wires": [
+          [
+              "65ac3a0e9a47c398"
+          ]
       ]
-    ]
   },
   {
-    "id": "ad1fbedbe49081d5",
-    "type": "comment",
-    "z": "68e43cfcbddee35f",
-    "name": "read last availble data",
-    "info": "",
-    "x": 660,
-    "y": 40,
-    "wires": []
+      "id": "ad1fbedbe49081d5",
+      "type": "comment",
+      "z": "68e43cfcbddee35f",
+      "name": "read last availble data",
+      "info": "",
+      "x": 480,
+      "y": 40,
+      "wires": []
   },
   {
-    "id": "a664b58d6a49d00d",
-    "type": "inject",
-    "z": "68e43cfcbddee35f",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "300",
-    "crontab": "",
-    "once": true,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "{}",
-    "payloadType": "json",
-    "x": 250,
-    "y": 300,
-    "wires": [
-      [
-        "84d8f7c72c94737b"
+      "id": "fa8cdb4275469598",
+      "type": "function",
+      "z": "68e43cfcbddee35f",
+      "name": "set until",
+      "func": "var d = new Date();\nd.setDate(d.getDate())\nmsg.payload.until = d;\nreturn msg;",
+      "outputs": 1,
+      "timeout": "",
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 680,
+      "y": 300,
+      "wires": [
+          [
+              "4d7e9047985dc31e"
+          ]
       ]
-    ]
   },
   {
-    "id": "84d8f7c72c94737b",
-    "type": "function",
-    "z": "68e43cfcbddee35f",
-    "name": "set from",
-    "func": "d = new Date();\nd.setDate(d.getDate()-3);\nmsg.payload.from = d;\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 460,
-    "y": 300,
-    "wires": [
-      [
-        "fa8cdb4275469598"
+      "id": "d81667dc61fa84dd",
+      "type": "comment",
+      "z": "68e43cfcbddee35f",
+      "name": "read data last N days",
+      "info": "",
+      "x": 500,
+      "y": 220,
+      "wires": []
+  },
+  {
+      "id": "08aed8c56d247853",
+      "type": "inject",
+      "z": "68e43cfcbddee35f",
+      "d": true,
+      "name": "",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "[{\"ts\":\"2022-07-06T00:00:00.000Z\",\"value\":12.3},{\"ts\":\"2022-07-06T01:00:00.000Z\",\"value\":12.7},{\"ts\":\"2022-07-06T02:00:00.000Z\",\"value\":15.7}]",
+      "payloadType": "json",
+      "x": 150,
+      "y": 820,
+      "wires": [
+          [
+              "31a4a8fd35a3add6"
+          ]
       ]
-    ]
   },
   {
-    "id": "fa8cdb4275469598",
-    "type": "function",
-    "z": "68e43cfcbddee35f",
-    "name": "set until",
-    "func": "d = new Date();\nd.setDate(d.getDate())\nmsg.payload.until = d;\nreturn msg;",
-    "outputs": 1,
-    "noerr": 0,
-    "initialize": "",
-    "finalize": "",
-    "libs": [],
-    "x": 620,
-    "y": 300,
-    "wires": [
-      [
-        "f5488245bd07e6be"
+      "id": "31a4a8fd35a3add6",
+      "type": "JEVis-Write",
+      "z": "68e43cfcbddee35f",
+      "jevisid": "11008",
+      "name": "",
+      "attribute": "Value",
+      "configuration": "70bf8619a9211a9a",
+      "x": 330,
+      "y": 820,
+      "wires": []
+  },
+  {
+      "id": "3fd6839e6063301f",
+      "type": "comment",
+      "z": "68e43cfcbddee35f",
+      "name": "write data(not working)",
+      "info": "",
+      "x": 260,
+      "y": 780,
+      "wires": []
+  },
+  {
+      "id": "ac00dcc12350315c",
+      "type": "debug",
+      "z": "68e43cfcbddee35f",
+      "name": "debug 71",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "false",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 920,
+      "y": 120,
+      "wires": []
+  },
+  {
+      "id": "02e1cb54c9df6ab5",
+      "type": "debug",
+      "z": "68e43cfcbddee35f",
+      "name": "debug 72",
+      "active": true,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "payload",
+      "targetType": "msg",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 940,
+      "y": 380,
+      "wires": []
+  },
+  {
+      "id": "4d7e9047985dc31e",
+      "type": "JEVis-Read",
+      "z": "68e43cfcbddee35f",
+      "jevisid": "11861",
+      "name": "",
+      "attribute": "Value",
+      "aggregation": "HOURLY",
+      "configuration": "0d6ba97dd1675226",
+      "x": 370,
+      "y": 380,
+      "wires": [
+          [
+              "9382c1f64a2b52d1"
+          ]
       ]
-    ]
   },
   {
-    "id": "f5488245bd07e6be",
-    "type": "JEVis-Read",
-    "z": "68e43cfcbddee35f",
-    "jevisid": "9055",
-    "name": "",
-    "attribute": "Value",
-    "aggregation": "HOURLY",
-    "configuration": "70bf8619a9211a9a",
-    "x": 830,
-    "y": 300,
-    "wires": [
-      [
-        "02e1cb54c9df6ab5"
+      "id": "30af9917c4644d6f",
+      "type": "inject",
+      "z": "68e43cfcbddee35f",
+      "name": "",
+      "props": [
+          {
+              "p": "payload"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "x": 100,
+      "y": 300,
+      "wires": [
+          [
+              "a5a26aa9.8e0c48"
+          ]
       ]
-    ]
   },
   {
-    "id": "d81667dc61fa84dd",
-    "type": "comment",
-    "z": "68e43cfcbddee35f",
-    "name": "read data last 3 days",
-    "info": "",
-    "x": 660,
-    "y": 220,
-    "wires": []
+      "id": "a5a26aa9.8e0c48",
+      "type": "change",
+      "z": "68e43cfcbddee35f",
+      "name": "change the structure of  payload",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload",
+              "pt": "msg",
+              "to": "{\"payload\":{\"from\":\"null\",\"until\":\"null\",\"value\":0}}",
+              "tot": "json",
+              "dc": true
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 310,
+      "y": 300,
+      "wires": [
+          [
+              "84d8f7c72c94737b"
+          ]
+      ],
+      "info": "prepare for the structure of the msg.payload"
   },
   {
-    "id": "08aed8c56d247853",
-    "type": "inject",
-    "z": "68e43cfcbddee35f",
-    "name": "",
-    "props": [
-      {
-        "p": "payload"
-      },
-      {
-        "p": "topic",
-        "vt": "str"
-      }
-    ],
-    "repeat": "",
-    "crontab": "",
-    "once": false,
-    "onceDelay": 0.1,
-    "topic": "",
-    "payload": "[{\"ts\":\"2022-07-06T00:00:00.000Z\",\"value\":12.3},{\"ts\":\"2022-07-06T01:00:00.000Z\",\"value\":12.7},{\"ts\":\"2022-07-06T02:00:00.000Z\",\"value\":15.7}]",
-    "payloadType": "json",
-    "x": 250,
-    "y": 440,
-    "wires": [
-      [
-        "31a4a8fd35a3add6"
+      "id": "3fc8e4e7c4ef4ed1",
+      "type": "function",
+      "z": "68e43cfcbddee35f",
+      "name": "filter zero value entries",
+      "func": "if(msg.payload.value != 0){\n    return msg;\n}\n",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 740,
+      "y": 380,
+      "wires": [
+          [
+              "02e1cb54c9df6ab5"
+          ]
       ]
-    ]
   },
   {
-    "id": "31a4a8fd35a3add6",
-    "type": "JEVis-Write",
-    "z": "68e43cfcbddee35f",
-    "jevisid": "11008",
-    "name": "",
-    "attribute": "Value",
-    "configuration": "70bf8619a9211a9a",
-    "x": 430,
-    "y": 440,
-    "wires": []
+      "id": "9382c1f64a2b52d1",
+      "type": "split",
+      "z": "68e43cfcbddee35f",
+      "name": "Split array",
+      "splt": "\\n",
+      "spltType": "str",
+      "arraySplt": "1",
+      "arraySpltType": "len",
+      "stream": false,
+      "addname": "",
+      "x": 540,
+      "y": 380,
+      "wires": [
+          [
+              "3fc8e4e7c4ef4ed1"
+          ]
+      ]
   },
   {
-    "id": "3fd6839e6063301f",
-    "type": "comment",
-    "z": "68e43cfcbddee35f",
-    "name": "write data",
-    "info": "",
-    "x": 600,
-    "y": 380,
-    "wires": []
+      "id": "84d8f7c72c94737b",
+      "type": "function",
+      "z": "68e43cfcbddee35f",
+      "name": "set from",
+      "func": "var d = new Date();\nd.setDate(d.getDate()-26);\nmsg.payload.from = d;\nreturn msg;",
+      "outputs": 1,
+      "timeout": "",
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 520,
+      "y": 300,
+      "wires": [
+          [
+              "fa8cdb4275469598"
+          ]
+      ]
   },
   {
-    "id": "ac00dcc12350315c",
-    "type": "debug",
-    "z": "68e43cfcbddee35f",
-    "name": "debug 71",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 920,
-    "y": 120,
-    "wires": []
+      "id": "dea4947c2fadd1be",
+      "type": "JEVis-Read",
+      "z": "68e43cfcbddee35f",
+      "jevisid": "11861",
+      "name": "",
+      "attribute": "Value",
+      "aggregation": "NONE",
+      "configuration": "0d6ba97dd1675226",
+      "x": 310,
+      "y": 600,
+      "wires": [
+          [
+              "207684b02e402239"
+          ]
+      ]
   },
   {
-    "id": "02e1cb54c9df6ab5",
-    "type": "debug",
-    "z": "68e43cfcbddee35f",
-    "name": "debug 72",
-    "active": true,
-    "tosidebar": true,
-    "console": false,
-    "tostatus": false,
-    "complete": "false",
-    "statusVal": "",
-    "statusType": "auto",
-    "x": 1000,
-    "y": 320,
-    "wires": []
+      "id": "9da5f69385a0222c",
+      "type": "debug",
+      "z": "68e43cfcbddee35f",
+      "name": "debug JEVIS-Read",
+      "active": false,
+      "tosidebar": true,
+      "console": false,
+      "tostatus": false,
+      "complete": "payload",
+      "targetType": "msg",
+      "statusVal": "",
+      "statusType": "auto",
+      "x": 790,
+      "y": 680,
+      "wires": []
   },
   {
-    "id": "70bf8619a9211a9a",
-    "type": "JEVis-Server",
-    "name": "Demo",
-    "host": "https://demo.jevis.de:8000"
+      "id": "69cd03a799986b81",
+      "type": "inject",
+      "z": "68e43cfcbddee35f",
+      "name": "",
+      "props": [
+          {
+              "p": "payload"
+          },
+          {
+              "p": "topic",
+              "vt": "str"
+          }
+      ],
+      "repeat": "",
+      "crontab": "",
+      "once": false,
+      "onceDelay": 0.1,
+      "topic": "",
+      "payload": "",
+      "payloadType": "date",
+      "x": 120,
+      "y": 600,
+      "wires": [
+          [
+              "dea4947c2fadd1be"
+          ]
+      ]
+  },
+  {
+      "id": "7addc589eb0d00f8",
+      "type": "function",
+      "z": "68e43cfcbddee35f",
+      "name": "math add operation",
+      "func": "var v = msg.payload.value + 0.1;\n\nmsg.payload.value = v;\n\nreturn msg;",
+      "outputs": 1,
+      "timeout": 0,
+      "noerr": 0,
+      "initialize": "",
+      "finalize": "",
+      "libs": [],
+      "x": 550,
+      "y": 680,
+      "wires": [
+          [
+              "9da5f69385a0222c"
+          ]
+      ]
+  },
+  {
+      "id": "207684b02e402239",
+      "type": "change",
+      "z": "68e43cfcbddee35f",
+      "name": "change variable type",
+      "rules": [
+          {
+              "t": "set",
+              "p": "payload.value",
+              "pt": "msg",
+              "to": "$number(payload.value)",
+              "tot": "jsonata"
+          }
+      ],
+      "action": "",
+      "property": "",
+      "from": "",
+      "to": "",
+      "reg": false,
+      "x": 520,
+      "y": 600,
+      "wires": [
+          [
+              "7addc589eb0d00f8"
+          ]
+      ]
+  },
+  {
+      "id": "a64bcdc11806c9e2",
+      "type": "comment",
+      "z": "68e43cfcbddee35f",
+      "name": "math operation",
+      "info": "# By default, the variable type of the data read from the JEVis server is 'string'. \n# To perform mathematical operations with the 'value', we have to change the type of '_msg.payload.value_' from string to number.",
+      "x": 500,
+      "y": 560,
+      "wires": []
+  },
+  {
+      "id": "70bf8619a9211a9a",
+      "type": "JEVis-Server",
+      "name": "Demo",
+      "host": "https://demo.jevis.de:8000"
+  },
+  {
+      "id": "0d6ba97dd1675226",
+      "type": "JEVis-Server",
+      "name": "jevisDemo",
+      "host": "https://demo.jevis.de:8000"
   }
 ]

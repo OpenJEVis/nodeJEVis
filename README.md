@@ -24,7 +24,7 @@ JEVis Server
 
 #### Request Last Sample
 
-if msg.payload is empty or does not contain from, until the last sample will be returned.
+if *msg.payload* is empty or does not contain *from*, *until* the last sample will be returned.
 
 #### Request Samples between two dates
 
@@ -56,6 +56,15 @@ expects in msg.payload an array of elements each of them containing:
 | ts       | Date time String Written into the JEVis Object in the format (yyyy-MM-ddTHH:mm:ss.SSSZ) |
 | value    | The Value for the corresponding Date Time                                               |
 
+Notice that the variable *value* is read from the JEVis Server, and by default, its type is *String*, not *Number*.   
+Therefore a *change* node is needed to convert the type of varialbe *value* to *number*,  if you need to perform mathematical operations such as addition or multiplication. This *change* node will be demonstrated in the *example.json* 
+
+
+### Example
+Under the examples folder you can find the file *example.json*, you can [import the example flow to your Node-Red](https://nodered.org/docs/user-guide/editor/workspace/import-export). There are three examples:
+1. The first one shows you how to read a single entry from the JEVis Server.
+2. The second one demonstrates reading data from a specific time interval, enabling you to read multiple data at once.
+3. The third one demonstrates the change of variable type, for example, from *String* to *Number*."
 
 
 
